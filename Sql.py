@@ -1,5 +1,5 @@
 #!/usr/bin/python
-import SqlDB
+
 
 # - db interface class file
 # - fluency on select, update, insert, and delete
@@ -30,6 +30,15 @@ class Sql(SqlDB.SqlDB):
             return self
 
         # now contstruct from the raw select
+        if table is not None:
+            self.table(table_name=table)
+
+        if fields is not None:
+            self.fields([fields])
+
+        if where is not None:
+            self.where(where, args)
+
         return self
 
     def update(self):
